@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exercise2</title>
+    <style>
+      .input {
+        height: 36px;
+        padding: 0 16px;
+        outline: none;
+        border-radius: 4px;
+        border: 1px solid #dadada;
+      }
+
+      .input:focus {
+        border-color: blue;
+      }
+
+      .input:hover {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      }
+
+      div {
+        border: 1px solid #dadada;
+        border-radius: 4px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        margin-top: 10px;
+        width: 300px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input
+        type="text"
+        placeholder="Nhập vào chuỗi các ký tự"
+        id="inputString"
+      />
+      <button id="button">Gửi</button>
+      <div>
+        <p id="displayMaxNumber"></p>
+      </div>
+    </form>
+    <script>
+      //#region  Lấy các phần tử trong DOM
+      let inputString = document.getElementById("inputString");
+      let displayMaxNumber = document.getElementById("displayMaxNumber");
+      let button = document.getElementById("button");
+      let text = document.getElementById("text");
+      //#endregion
+      const reversedString = (inputString) => {
+        // Chuyển chuỗi thành mảng, sử dụng khoảng trắng để tách các thành phần
+        const stringArr = inputString.split(" ");
+
+        // dùng map lặp qua các mảng và gọi lại mỗi từ được lặp
+        // dùng split chuyển thành mảng ký tự
+        // reverse để đảo ngược các ký tự và join lại thành mảng mới
+        const reversedArray = stringArr.map((word) =>
+          word.split("").reverse().join("")
+        );
+
+        // Kết hợp mảng thành chuỗi, sử dụng khoảng trắng để nối các thành phần
+        const reversedString = reversedArray.join(" ");
+
+        return reversedString;
+      };
+      //#region lắng nghe sự kiện button và hiển thị ra màn hình
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        const result = reversedString(inputString.value);
+
+        displayMaxNumber.innerHTML = `Chuỗi sau khi đảo ngược là: ${result}`;
+      });
+      //#endregion
+      // Sử dụng hàm
+    </script>
+  </body>
+</html>

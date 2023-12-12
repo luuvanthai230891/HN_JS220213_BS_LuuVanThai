@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exercise4</title>
+    <style>
+      .input {
+        height: 36px;
+        padding: 0 16px;
+        outline: none;
+        border-radius: 4px;
+        border: 1px solid #dadada;
+      }
+
+      .input:focus {
+        border-color: blue;
+      }
+
+      .input:hover {
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+      }
+
+      div {
+        border: 1px solid #dadada;
+        border-radius: 4px;
+        box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        margin-top: 10px;
+        width: 300px;
+        height: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <form>
+      <input
+        type="text"
+        placeholder="Nhập vào chuỗi các ký tự"
+        id="inputString"
+      />
+      <button id="button">Gửi</button>
+
+      <div>
+        <p id="displayMaxNumber"></p>
+      </div>
+    </form>
+    <script>
+      //#region  Lấy các phần tử trong DOM
+      let inputString = document.getElementById("inputString");
+      let displayMaxNumber = document.getElementById("displayMaxNumber");
+      let button = document.getElementById("button");
+      let text = document.getElementById("text");
+      //#endregion
+      function changeNumbersString(inputString) {
+        // Sử dụng biểu thức chính quy '/d/g' để lọc ra các ký tự không phải số
+        const changeString = inputString.replace(/\d/g, "");
+
+        return changeString;
+      }
+      //#region lắng nghe sự kiện button và hiển thị ra màn hình
+      button.addEventListener("click", (e) => {
+        e.preventDefault();
+        const result = changeNumbersString(inputString.value);
+
+        displayMaxNumber.innerHTML = `Chuỗi ký tự đã xoá số là: ${result}`;
+      });
+      //#endregion
+    </script>
+  </body>
+</html>
